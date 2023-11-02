@@ -6,8 +6,13 @@ const saltRounds = 10;
 
 
 async function findAllClients(req,res,next) {
-    const clients = await Client.findAll();
-    res.json(clients);
+    try {
+        const clients = await Client.findAll();
+        res.json(clients);
+    } catch (error) {
+        console.error("Error in findAllClients:", error);
+        res.status(500).json({ error: "An error occurred while fetching clients" });
+    }
 }
 
 async function findClient(req, res, next) {
@@ -18,14 +23,14 @@ async function findClient(req, res, next) {
 async function addClient(req, res, next) {
     let passwordHash = null;
 
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-      if(hash) {
-        passwordHash = hash;
-      } else{
-        console.log("Password hash: ",err)
-        return res.status(400).send({msg:'password invalid'});
-      }
-    });
+    try {
+        passwordHash = await bcrypt.hash(req.body.password, saltRounds);
+        // Rest of your code
+    } catch (error) {
+        console.error("Password hash error:", error);
+        return res.status(400).send({ msg: 'Password invalid' });
+    }
+
 
     const response = await Client.create({
         name: req.body.name,
@@ -73,7 +78,7 @@ async function deleteClient(req,res,next){
 
 
 async function signIn(req, res, next){
-    const clientToCompare = Client.findOne({ 
+    const clientToCompare = await Client.findOne({ 
         where: {
              email: req.body.email 
             } 
