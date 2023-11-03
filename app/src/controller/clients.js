@@ -51,7 +51,8 @@ async function updateClient(req, res, next) {
         where:{
             id:req.params.id
         },
-    });
+    })
+
     console.log('update response: ',response);
 
 
@@ -65,7 +66,8 @@ async function deleteClient(req,res,next){
     const response = await Client.destroy({
         where:{
             id:req.params.id,
-        }
+        },
+        force: true
     })
 
     console.log("delete response: ",response)

@@ -12,7 +12,7 @@ routes.get('/', (req, res) => {
 //CRUD
 routes.get("/clients",clients.findAllClients);
 routes.post('/clients',clients.addClient);
-routes.put('/clients/id:',clients.updateClient);
+routes.patch('/clients/id:',clients.updateClient);
 routes.delete('/clients/id:',clients.deleteClient);
 routes.get('/clients/id:',clients.findClient);
 
