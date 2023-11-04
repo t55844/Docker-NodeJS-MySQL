@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 const routes = express.Router();
 
-const clients = require('./controller/clients')
+const clients = require('./controller/clients/clients')
 
 
 routes.get('/', (req:Request, res:Response) => {

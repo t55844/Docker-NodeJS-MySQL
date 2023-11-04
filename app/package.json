@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js",
-		"dev": "nodemon",
+		"start": "node server.ts",
+		"dev": "ts-node server.ts",
 		"build": "npx tsc",
 		"test": "npm-run-all --aggregate-output cov:clean -p cov:unit cov:integration -s cov:summary-preset cov:report",
 		"test:integration": "npm-run-all cov:clean cov:integration",

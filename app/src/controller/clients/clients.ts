@@ -1,4 +1,4 @@
-const Client = require('../models/clientsModel');
+const Client = require('../../models/clientsModel');
 import { Request, Response,NextFunction } from "express";
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
