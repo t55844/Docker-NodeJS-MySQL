@@ -18,4 +18,4 @@ RUN npm install bcrypt
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm","run", "dev"]

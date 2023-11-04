@@ -2,9 +2,11 @@
 	"name": "node-mysql-app",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
 		"start": "node server.js",
+		"dev": "nodemon",
+		"build": "npx tsc",
 		"test": "npm-run-all --aggregate-output cov:clean -p cov:unit cov:integration -s cov:summary-preset cov:report",
 		"test:integration": "npm-run-all cov:clean cov:integration",
 		"test:unit": "npm-run-all cov:clean cov:unit",
@@ -19,7 +21,7 @@
 		"mysql",
 		"nodejs"
 	],
-	"author": "FrasNym",
+	"author": "t88544",
 	"license": "ISC",
 	"dependencies": {
 		"bcrypt": "^5.1.1",
@@ -31,9 +33,13 @@
 	},
 	"devDependencies": {
 		"@jest/globals": "^29.3.1",
+		"@types/express": "^4.17.20",
+		"@types/node": "^20.8.10",
 		"jest": "^29.3.1",
-		"nodemon": "^2.0.20",
+		"nodemon": "^2.0.22",
 		"npm-run-all": "^4.1.5",
-		"nyc": "^15.1.0"
+		"nyc": "^15.1.0",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.2.2"
 	}
 }

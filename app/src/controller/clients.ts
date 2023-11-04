@@ -1,11 +1,10 @@
 const Client = require('../models/clientsModel');
-
+import { Request, Response,NextFunction } from "express";
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 
-
-async function findAllClients(req,res,next) {
+async function findAllClients(req:Request,res:Response,next:NextFunction) {
     try {
         const clients = await Client.findAll();
         return res.json(clients);
@@ -14,7 +13,7 @@ async function findAllClients(req,res,next) {
     }
 }
 
-async function findClient(req, res, next) {
+async function findClient(req:Request, res:Response, next:NextFunction) {
     try {
         const client = await Client.findByPk(req.params.id)
         return res.json(client);
@@ -24,7 +23,7 @@ async function findClient(req, res, next) {
     }
 }
 
-async function addClient(req, res, next) {
+async function addClient(req:Request, res:Response, next:NextFunction) {
     let passwordHash = null;
 
     try {
@@ -50,7 +49,7 @@ async function addClient(req, res, next) {
 
 }
 
-async function updateClient(req, res, next) {
+async function updateClient(req:Request, res:Response, next:NextFunction) {
 
     try {
         const response = await Client.update({
@@ -74,7 +73,7 @@ async function updateClient(req, res, next) {
     
 }
 
-async function deleteClient(req,res,next){
+async function deleteClient(req:Request,res:Response,next:NextFunction){
     try {
         const response = await Client.destroy({
             where:{
@@ -95,7 +94,7 @@ async function deleteClient(req,res,next){
 }
 
 
-async function signIn(req, res, next){
+async function signIn(req:Request, res:Response, next:NextFunction){
     const clientToCompare = await Client.findOne({ 
         where: {
              email: req.body.email 

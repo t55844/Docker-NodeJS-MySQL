@@ -1,11 +1,12 @@
 const express = require('express');
+import { Request, Response } from "express";
 
 const routes = express.Router();
 
-const clients = require('./src/controller/clients')
+const clients = require('./controller/clients')
 
 
-routes.get('/', (req, res) => {
+routes.get('/', (req:Request, res:Response) => {
     return res.json({msg:'ok'});
 })
 

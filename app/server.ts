@@ -1,8 +1,8 @@
 const express = require('express');
-const routes = require('./routes.js');
+const routes = require('./src/routes.ts');
 require('dotenv').config();
 
-const db = require('./src/db/db.js');
+const db = require('./src/db/db.ts');
 
 const app = express();
 
