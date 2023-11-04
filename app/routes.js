@@ -12,11 +12,11 @@ routes.get('/', (req, res) => {
 //CRUD
 routes.get("/clients",clients.findAllClients);
 routes.post('/clients',clients.addClient);
-routes.patch('/clients/id:',clients.updateClient);
-routes.delete('/clients/id:',clients.deleteClient);
-routes.get('/clients/id:',clients.findClient);
+routes.patch('/clients/:id',clients.updateClient);
+routes.delete('/clients/:id',clients.deleteClient);
+routes.get('/clients/:id',clients.findClient);
 
 //LOGIN
-routes.get('/signin',clients.signIn);
+routes.post('/signin',clients.signIn);
 
 module.exports = routes

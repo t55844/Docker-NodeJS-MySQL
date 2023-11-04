@@ -11,6 +11,7 @@ const dbPassword = process.env.MYSQL_ROOT_PASSWORD;
 const sequelize = new Sequelize(dbName,dbUser,dbPassword,{
     dialect:"mysql",
     host:dbHost,
+    
 })
 
 
