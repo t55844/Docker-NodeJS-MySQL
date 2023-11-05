@@ -1,8 +1,18 @@
 const Client = require('../../models/clientsModel');
 import { Request, Response,NextFunction } from "express";
+import { clientInfoSchemEOfValidation } from "./clientsSchemeCheck";
+
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+
+async function validationFunc(res: Response,req: Request){
+    const validation = await clientInfoSchemEOfValidation.validate(req.body)    
+    
+    if(validation.error){
+        return res.status(500).json({  msg: validation.error.details[0].message})
+    }
+}
 
 async function findAllClients(req:Request,res:Response,next:NextFunction) {
     try {
@@ -24,6 +34,9 @@ async function findClient(req:Request, res:Response, next:NextFunction) {
 }
 
 async function addClient(req:Request, res:Response, next:NextFunction) {
+    
+    await validationFunc(res,req);
+
     let passwordHash = null;
 
     try {
@@ -50,6 +63,8 @@ async function addClient(req:Request, res:Response, next:NextFunction) {
 }
 
 async function updateClient(req:Request, res:Response, next:NextFunction) {
+
+    await validationFunc(res,req);
 
     try {
         const response = await Client.update({
@@ -95,6 +110,9 @@ async function deleteClient(req:Request,res:Response,next:NextFunction){
 
 
 async function signIn(req:Request, res:Response, next:NextFunction){
+    
+    await validationFunc(res,req);
+    
     const clientToCompare = await Client.findOne({ 
         where: {
              email: req.body.email 
