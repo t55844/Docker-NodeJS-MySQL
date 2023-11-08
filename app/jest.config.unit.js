@@ -8,5 +8,9 @@ module.exports = {
   collectCoverageFrom: [
     '**/src/controller/*.js',
   ],
-  coverageDirectory: 'coverage/unit'
+  coverageDirectory: 'coverage/unit',
+  transform: {
+    '^.+\\.tsx?$': 'babel-jest',
+  },
+  extensionsToTreatAsEsm: ['.ts'],
 };

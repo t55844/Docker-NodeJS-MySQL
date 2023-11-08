@@ -64,8 +64,6 @@ async function addClient(req:Request, res:Response, next:NextFunction) {
 
 async function updateClient(req:Request, res:Response, next:NextFunction) {
 
-    await validationFunc(res,req);
-
     try {
         const response = await Client.update({
             name:req.body.name,
